@@ -14,6 +14,9 @@ switch ($controller) {
 	case 'app':
 		$controller = AppFactory::getController($controller, $action);
 		break;
+	case 'user':
+		$controller = AppFactory::getController($controller, $action);
+		break;
 	default:
 		$controller = new AppController($action);
 		break;

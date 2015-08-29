@@ -8,7 +8,7 @@ use dec\components\Url;
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">07.no user registration test</a>
+          <a class="navbar-brand" href="<?= Url::to('app', 'index')?>">07.no user registration test</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

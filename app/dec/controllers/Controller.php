@@ -2,7 +2,11 @@
 
 namespace dec\controllers;
 
-class Controller
+use dec\controllers\interfaces\ControllerInterface;
+use dec\components\Url;
+
+
+class Controller implements ControllerInterface
 {
 
 	// The current action, defaults to 'actionIndex';
@@ -32,7 +36,12 @@ class Controller
 
 	public function run($action)
 	{
-		// code
+		if (method_exists($this, $this->action)) {
+			$methodName = $this->action;
+			$this->$methodName();
+		} else {
+			$this->actionError();
+		}
 	}
 
 
@@ -56,6 +65,11 @@ class Controller
 		$layout = ob_get_clean();
 
 		return $layout;
+	}
+
+	public function actionError()
+	{
+		header('Location: '.'http://'.$_SERVER[HTTP_HOST].Url::to('app', 'error'));
 	}
 
 }

@@ -6,7 +6,7 @@ class Url
 {
 	public static function to($c, $a, $params = [])
 	{
-		$url = 'index.php?c='.$c.'&a='.$a;
+		$url = '/index.php?c='.$c.'&a='.$a;
 		foreach ($params as $key => $value) {
 			$url.="&".$key."=".$value;
 		}

@@ -14,16 +14,6 @@ class AppController extends Controller
 		$this->layoutFile = __DIR__."/../views/layouts/".$this->layout;
 	}
 
-	public function run($action)
-	{
-		if (method_exists($this, $this->action)) {
-			$methodName = $this->action;
-			$this->$methodName();
-		} else {
-			$this->actionError();
-		}
-	}
-
 	public function actionIndex()
 	{
 		// renders a view with the same name as the action, ex actionIndex renders index.php 
@@ -35,6 +25,9 @@ class AppController extends Controller
 
 	public function actionError()
 	{
-		echo "not found";
+		$this->render([
+			'message' => 'Sorry, that page could not be found!'
+			]);
 	}
+
 }

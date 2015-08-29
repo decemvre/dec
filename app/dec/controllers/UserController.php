@@ -3,19 +3,28 @@
 namespace dec\controllers;
 
 use dec\controllers\Controller;
-use dec\controllers\interfaces\UserControllerInterface;
+use dec\controllers\interfaces\ControllerInterface;
+use dec\models\User;
 
-class UserController extends Controller implements UserControllerInterface
+
+class UserController extends Controller
 {
 
-	public function __construct()
+	public function __construct($action)
 	{
-		# code...
+		parent::__construct(get_class($this), $action);
+		$this->viewFile = __DIR__."/../views/".$this->viewsFolder.$this->view;
+		$this->layoutFile = __DIR__."/../views/layouts/".$this->layout;
 	}
 
 	public function actionRegister()
 	{
-		# code...
+
+		$model = new User();
+
+		$this->render([
+			'model' => $model
+			]);
 	}
 
 	public function actionLogin()
