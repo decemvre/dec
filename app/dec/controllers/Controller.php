@@ -72,4 +72,9 @@ class Controller implements ControllerInterface
 		header('Location: '.'http://'.$_SERVER[HTTP_HOST].Url::to('app', 'error'));
 	}
 
+	public function redirect($c, $a, $params = [])
+	{
+		header('Location: '.'http://'.$_SERVER[HTTP_HOST].Url::to($c, $a));
+	}
+
 }

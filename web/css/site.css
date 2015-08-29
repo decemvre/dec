@@ -1,3 +1,6 @@
 body {
-	background-color: red;
+}
+
+.body-content {
+	min-height: 800px;
 }

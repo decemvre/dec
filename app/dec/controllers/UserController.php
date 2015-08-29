@@ -20,6 +20,12 @@ class UserController extends Controller
 	public function actionRegister()
 	{
 
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			var_dump($_POST); exit;
+			$this->redirect('user', 'welcome');
+		}
+
+
 		$model = new User();
 
 		$this->render([
@@ -30,5 +36,12 @@ class UserController extends Controller
 	public function actionLogin()
 	{
 		# code...
+	}
+
+	public function actionWelcome()
+	{
+		$this->render([
+
+			]);
 	}
 }
