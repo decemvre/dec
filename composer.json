@@ -1,0 +1,21 @@
+{
+    "autoload": {
+        "psr-4": {
+            "dec\\": "app/dec"
+        }
+    },
+    "name": "decemvre/dec",
+    "description": "A simple sandbox application to develop skills",
+    "type": "project",
+    "license": "none",
+    "authors": [
+        {
+            "name": "Mircea Silviu Itu",
+            "email": "decemvre@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4.0"
+    }
+}
