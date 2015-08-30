@@ -12,7 +12,7 @@ Installation guide
 
 5. run: composer update
 
-6. Create a mysql database and user; grant all
+6. Create a mysql database and user; grant all and edit the config file in app/dec/config/db.php
 
 7. Normally this is where you'd be running something like: app migrate but since I didn't install any migration tool you'll have to get the sql from the db folder and import it into your database
 mysql> use DATABASE_NAME;
