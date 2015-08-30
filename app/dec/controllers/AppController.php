@@ -16,18 +16,27 @@ class AppController extends Controller
 
 	public function actionIndex()
 	{
-		// renders a view with the same name as the action, ex actionIndex renders index.php 
-		// inside the folder with the same name as the Controller name, ex AppController views/app/
-		$this->render([
-			'test' => 'lalala'
-			]);
+// renders a view with the same name as the action, ex actionIndex renders index.php 
+// inside the folder with the same name as the Controller name, ex AppController views/app/
+		$this->render();
 	}
+
+	public function actionAbout()
+	{
+		$this->render();
+	}
+
+	public function actionContact()
+	{
+		$this->render();
+	}
+
 
 	public function actionError()
 	{
 		$this->render([
 			'message' => 'Sorry, that page could not be found!'
-			]);
+			], 'error.php');
 	}
 
 }

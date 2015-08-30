@@ -4,13 +4,13 @@ namespace dec\components;
 
 class Assets
 {
-	
-    public static $css = [
-        'css/site.css',
-    ];
-    public static $js = [
-        'js/site.js',
-    ];
+
+	public static $css = [
+	'css/site.css',
+	];
+	public static $js = [
+	'js/site.js',
+	];
 
 	public static function registerCSS()
 	{

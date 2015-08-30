@@ -2,7 +2,7 @@
 
 namespace dec\controllers\interfaces;
 
-/*This is the interface for the User controller class
+/*This is the interface for the Controller class
 */
 
 interface ControllerInterface

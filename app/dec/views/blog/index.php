@@ -1,0 +1,1 @@
+<h1>Blog Controller Action Index</h1>

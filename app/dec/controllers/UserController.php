@@ -23,9 +23,19 @@ class UserController extends Controller
 		$model = new RegisterForm();
 
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+			$_SESSION['name'] = $_POST['RegisterForm']['name'];
+			$_SESSION['email'] = $_POST['RegisterForm']['email'];
+			$_SESSION['password'] = $_POST['RegisterForm']['password'];
+
 			if ($model->load($_POST) && $model->validate()) {
 				if ($user = $model->register()) {
 					if ($user->login()) {
+
+						unset($_SESSION['name']);
+						unset($_SESSION['email']);
+						unset($_SESSION['password']);
+
 						$this->render([
 							'model' => $user
 							], 'welcome.php');
@@ -36,6 +46,10 @@ class UserController extends Controller
 				}
 			}
 		}
+
+		$model->name = (isset($_SESSION['name']))?$_SESSION['name']:"";
+		$model->email = (isset($_SESSION['email']))?$_SESSION['email']:"";
+		$model->password = (isset($_SESSION['password']))?$_SESSION['password']:"";
 
 		$this->render([
 			'model' => $model
@@ -48,8 +62,6 @@ class UserController extends Controller
 
 	public function actionWelcome()
 	{
-		$this->render([
-
-			]);
+		$this->render();
 	}
 }

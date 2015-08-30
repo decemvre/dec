@@ -9,13 +9,13 @@ use dec\components\Url;
 class Controller implements ControllerInterface
 {
 
-	// The current action, defaults to 'actionIndex';
+// The current action, defaults to 'actionIndex';
 	public $action = 'actionIndex';
 
-	// Where the views for each child controller will be located
+// Where the views for each child controller will be located
 	protected $viewsFolder;
 
-	// The layout used, defaults to main.php; can be changed inside each action of child classes
+// The layout used, defaults to main.php; can be changed inside each action of child classes
 	protected $layout = 'main.php';
 
 	protected $viewFile;
@@ -25,16 +25,16 @@ class Controller implements ControllerInterface
 	{
 		$this->view = $action.'.php';
 		$this->viewsFolder = strtolower(
-				str_replace("Controller", "", 
-					ltrim(
-						strrchr($childClass, "\\"), "\\"))) . "/";
+			str_replace("Controller", "", 
+				ltrim(
+					strrchr($childClass, "\\"), "\\"))) . "/";
 		$this->layoutPath = __DIR__.'/../../views/layouts/';
 
 		$this->action = 'action'.ucfirst($action);
 	}
 
 
-	public function run($action)
+	public function run()
 	{
 		if (method_exists($this, $this->action)) {
 			$methodName = $this->action;
@@ -45,19 +45,19 @@ class Controller implements ControllerInterface
 	}
 
 
-	// Controller method to render views along with variables inside a layout
-	// The reason the render function takes the view file name last is because I wanted
-	// it to be a little different from others in order to maintain some originality... 
-	// ...actually not really, i thought I could do a slightly more rigid structure but in 
-	// fact i realized this functionality was needed because I can't just use redirect()
-	// all the time, : D that was pretty dumb
+// Controller method to render views along with variables inside a layout
+// The reason the render function takes the view file name last is because I wanted
+// it to be a little different from others in order to maintain some originality... 
+// ...actually not really, i thought I could do a slightly more rigid structure but in 
+// fact i realized this functionality was needed because I can't just use redirect()
+// all the time, : D that was pretty dumb
 	public function render($variables = [], $view = null)
 	{
 		extract($variables);
 		ob_start();
 
-		// var_dump('expression'); exit;
-		// This is where I done goofed and had to do a quickfix
+// var_dump('expression'); exit;
+// This is where I done goofed and had to do a quickfix
 		if (!is_null($view)) {
 			include __DIR__."/../views/".$this->viewsFolder.$view;
 		} else {
@@ -70,7 +70,7 @@ class Controller implements ControllerInterface
 		return;
 	}
 
-	// puts the view files inside the layout
+// puts the view files inside the layout
 	public function layout($viewFile)
 	{
 		ob_start();
