@@ -32,6 +32,7 @@ use dec\components\Assets;
     <body>
      <div class="wrap">
       <div class="container">
+
         <?php include '_nav.php'; ?>
         <?= $viewFile ?>	
       </div>

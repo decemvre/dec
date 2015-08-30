@@ -4,6 +4,7 @@ namespace dec\controllers;
 
 use dec\controllers\Controller;
 use dec\controllers\interfaces\ControllerInterface;
+use dec\models\RegisterForm;
 use dec\models\User;
 
 
@@ -19,14 +20,20 @@ class UserController extends Controller
 
 	public function actionRegister()
 	{
+		$model = new RegisterForm();
 
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-			var_dump($_POST); exit;
-			$this->redirect('user', 'welcome');
+			if ($model->load($_POST) && $model->validate()) {
+				if ($user = $model->register()) {
+					$this->render([
+						'model' => $model
+						], 'welcome.php');
+					return;
+				} else {
+					$model->errors['error'] = "Something went wrong and we could not save your details to the database. Please try again later.";
+				}
+			}
 		}
-
-
-		$model = new User();
 
 		$this->render([
 			'model' => $model
@@ -35,7 +42,6 @@ class UserController extends Controller
 
 	public function actionLogin()
 	{
-		# code...
 	}
 
 	public function actionWelcome()

@@ -46,15 +46,28 @@ class Controller implements ControllerInterface
 
 
 	// Controller method to render views along with variables inside a layout
-	public function render($variables = [])
+	// The reason the render function takes the view file name last is because I wanted
+	// it to be a little different from others in order to maintain some originality... 
+	// ...actually not really, i thought I could do a slightly more rigid structure but in 
+	// fact i realized this functionality was needed because I can't just use redirect()
+	// all the time, : D that was pretty dumb
+	public function render($variables = [], $view = null)
 	{
 		extract($variables);
 		ob_start();
-		include $this->viewFile;
+
+		// var_dump('expression'); exit;
+		// This is where I done goofed and had to do a quickfix
+		if (!is_null($view)) {
+			include __DIR__."/../views/".$this->viewsFolder.$view;
+		} else {
+			include $this->viewFile;			
+		}
 		$view = ob_get_clean();
 		$withLayout = $this->layout($view);
 
 		echo $withLayout;
+		return;
 	}
 
 	// puts the view files inside the layout
