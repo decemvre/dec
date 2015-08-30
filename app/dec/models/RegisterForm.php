@@ -17,32 +17,33 @@ class RegisterForm extends Model
     public function rules()
     {
         return [
-            'name' => 'name',
-            'email' => 'email',
-            'password' => 'password',
+        'name' => 'name',
+        'email' => 'email',
+        'password' => 'password',
         ];
     }
 
     public function attributeLabels()
     {
         return [
-            'name' => 'Full Name',
-            'email' => 'Email',
-            'password' => 'Password',
+        'name' => 'Full Name',
+        'email' => 'Email',
+        'password' => 'Password',
         ];
     }
 
-    // Register the user
+    // Register the user, returns the user instance if succesful
     public function register()
     {
-            $user = new User();
-            $user->name = $this->name;
-            $user->email = $this->email;
-            $user->setPassword($this->password);
-            if ($user->save()) {
-                return $user;
-            }
-
+        $pass_hash = User::generatePasswordHash($this->password);
+        $user = User::create(array(
+         'name' => $this->name,
+         'email' => $this->email,
+         'password_hash' => $pass_hash,
+         ));
+        if ($user) {
+            return $user;
+        }
         return false;
     }
 

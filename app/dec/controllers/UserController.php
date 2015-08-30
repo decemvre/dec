@@ -25,10 +25,12 @@ class UserController extends Controller
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			if ($model->load($_POST) && $model->validate()) {
 				if ($user = $model->register()) {
-					$this->render([
-						'model' => $model
-						], 'welcome.php');
-					return;
+					if ($user->login()) {
+						$this->render([
+							'model' => $user
+							], 'welcome.php');
+						return;
+					}
 				} else {
 					$model->errors['error'] = "Something went wrong and we could not save your details to the database. Please try again later.";
 				}

@@ -1,7 +1,7 @@
 <?php
 namespace dec\models;
 
-use dec\models\Model;
+
 
 class Model
 {
@@ -41,7 +41,8 @@ class Model
     	$attributes = $this->rules();
 
     	foreach ($attributes as $attribute => $rule) {
-    		$result = call_user_method($rule, $this, $this->$attribute);
+            // $result = call_user_method($rule, $this, $this->$attribute); // apparently, deprecated
+    		$result = call_user_func(array($this, $rule), $this->$attribute);
     		if (!$result) {
     			switch ($rule) {
     				case 'name':
