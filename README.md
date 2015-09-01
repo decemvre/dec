@@ -1,8 +1,8 @@
-# dec
+# dec mvc
 
 Installation guide
 
-0. This is a rudimentary MVC web application built entirely by myself for the purpose of learning how to and developing my understanding of web app development. I don't plan on releasing any documentation so please don't use it in any of your projects. Feel free to browse around to review my code.
+This is a rudimentary MVC web application built entirely by myself for the purpose of learning how to and developing my understanding of web app development. I don't plan on releasing any documentation so please don't use it in any of your projects. Feel free to browse around to review my code.
 
 1. Clone this repo from https://github.com/decemvre/mvc.git
 

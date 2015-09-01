@@ -14,8 +14,6 @@ class UserController extends Controller
 	public function __construct($action)
 	{
 		parent::__construct(get_class($this), $action);
-		$this->viewFile = __DIR__."/../views/".$this->viewsFolder.$this->view;
-		$this->layoutFile = __DIR__."/../views/layouts/".$this->layout;
 	}
 
 	public function actionRegister()
@@ -36,9 +34,9 @@ class UserController extends Controller
 						unset($_SESSION['email']);
 						unset($_SESSION['password']);
 
-						$this->render([
+						$this->render('welcome.php', [
 							'model' => $user
-							], 'welcome.php');
+							]);
 						return;
 					}
 				} else {
@@ -51,7 +49,7 @@ class UserController extends Controller
 		$model->email = (isset($_SESSION['email']))?$_SESSION['email']:"";
 		$model->password = (isset($_SESSION['password']))?$_SESSION['password']:"";
 
-		$this->render([
+		$this->render('register.php', [
 			'model' => $model
 			]);
 	}

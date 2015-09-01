@@ -9,6 +9,9 @@ use dec\components\Url;
 class Controller implements ControllerInterface
 {
 
+	const DEFAULT_VIEW = 'index.php';
+	const DEFAULT_ACTION = 'actionIndex';
+
 // The current action, defaults to 'actionIndex';
 	public $action = 'actionIndex';
 
@@ -23,6 +26,8 @@ class Controller implements ControllerInterface
 
 	public function __construct($childClass, $action)
 	{
+
+
 		$this->view = $action.'.php';
 		$this->viewsFolder = strtolower(
 			str_replace("Controller", "", 
@@ -31,6 +36,10 @@ class Controller implements ControllerInterface
 		$this->layoutPath = __DIR__.'/../../views/layouts/';
 
 		$this->action = 'action'.ucfirst($action);
+
+		$this->viewFile = __DIR__."/../views/".$this->viewsFolder.$this->view;
+		$this->layoutFile = __DIR__."/../views/layouts/".$this->layout;
+		
 	}
 
 
@@ -45,20 +54,13 @@ class Controller implements ControllerInterface
 	}
 
 
-// Controller method to render views along with variables inside a layout
-// The reason the render function takes the view file name last is because I wanted
-// it to be a little different from others in order to maintain some originality... 
-// ...actually not really, i thought I could do a slightly more rigid structure but in 
-// fact i realized this functionality was needed because I can't just use redirect()
-// all the time, : D that was pretty dumb
-	public function render($variables = [], $view = null)
+	// Controller method to render views along with variables inside a layout
+	public function render($view = self::DEFAULT_VIEW, $varsPassedToTheView = [])
 	{
-		extract($variables);
+		extract($varsPassedToTheView);
 		ob_start();
 
-// var_dump('expression'); exit;
-// This is where I done goofed and had to do a quickfix
-		if (!is_null($view)) {
+		if ($view !== self::DEFAULT_VIEW) {
 			include __DIR__."/../views/".$this->viewsFolder.$view;
 		} else {
 			include $this->viewFile;			
