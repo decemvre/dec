@@ -17,6 +17,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.5.0",
-        "php-activerecord/php-activerecord": "dev-master"
+        "php-activerecord/php-activerecord": "dev-master",
+        "guzzlehttp/guzzle": "^6.1@dev"
     }
 }

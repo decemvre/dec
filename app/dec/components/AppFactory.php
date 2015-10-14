@@ -5,6 +5,7 @@ namespace dec\components;
 use dec\controllers\AppController;
 use dec\controllers\UserController;
 use dec\controllers\BlogController;
+use dec\controllers\FeedController;
 
 class AppFactory
 {
@@ -19,6 +20,9 @@ class AppFactory
 			break;
 			case 'blog':
 			return new BlogController($action);
+			break;
+			case 'feed':
+			return new FeedController($action);
 			break;
 			default:
 			return new AppController($action);
